@@ -11,12 +11,9 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import MailIcon from '@material-ui/icons/Mail';
-import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import { NavLink } from 'react-router-dom';
 import { APP_URL_MAP, LocalStorageUtils, redirectTo } from '@/shared/utils';
@@ -107,7 +104,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function PrimarySearchAppBar() {
   const classes = useStyles();
-  const setUser = useAppStore((s) => s.setUser);
+  const setUser = useAppStore((s: AppStoreState) => s.setUser);
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =

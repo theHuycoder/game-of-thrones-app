@@ -316,7 +316,7 @@ class Polka extends trouter {
 var polka = (opts) => new Polka(opts);
 const serveIndex = (req, res) => {
   res.setHeader("Content-Type", "text/html");
-  res.end('<!DOCTYPE html>\n<html lang="en">\n  <head>\n    <meta charset="UTF-8" />\n    <link rel="icon" type="image/svg+xml" href="/src/favicon.svg" />\n    <meta name="viewport" content="width=device-width, initial-scale=1.0" />\n    <title>Vite App</title>\n    <script type="module" crossorigin src="/assets/index.599d0c9c.js"><\/script>\n  </head>\n  <body>\n    <div id="root"></div>\n    \n  </body>\n</html>\n');
+  res.end('<!DOCTYPE html>\n<html lang="en">\n  <head>\n    <meta charset="UTF-8" />\n    <link rel="icon" type="image/svg+xml" href="/src/favicon.svg" />\n    <meta name="viewport" content="width=device-width, initial-scale=1.0" />\n    <title>Vite App</title>\n    <script type="module" crossorigin src="/assets/index.5e51424b.js"><\/script>\n  </head>\n  <body>\n    <div id="root"></div>\n    \n  </body>\n</html>\n');
 };
 const applyHandler = (server2) => {
   if (Array.isArray(handler.handler)) {

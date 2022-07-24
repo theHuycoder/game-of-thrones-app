@@ -3,7 +3,7 @@ import { IUser } from '@/modals/auth.modals';
 
 type UserWithoutPassword = Omit<IUser, 'password'>;
 
-type AppStoreState = {
+export type AppStoreState = {
   user: UserWithoutPassword | null;
   // eslint-disable-next-line no-unused-vars
   setUser: (user: UserWithoutPassword | null) => void;

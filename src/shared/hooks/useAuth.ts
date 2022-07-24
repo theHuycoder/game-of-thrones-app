@@ -9,14 +9,15 @@ import {
 import { AuthClientService } from '@/services';
 import { useAppStore } from '@/shared/store';
 import { useSnackbarStore } from '../store/snackbar.store';
+import { AppStoreState } from '../store/store';
 
 type UseAuthParams = {
   redirectOnSuccessUrl?: string;
 };
 
 export const useAuth = ({ redirectOnSuccessUrl }: UseAuthParams = {}) => {
-  const setUser = useAppStore((s) => s.setUser);
-  const user = useAppStore((s) => s.user);
+  const setUser = useAppStore((s: AppStoreState) => s.setUser);
+  const user = useAppStore((s: AppStoreState) => s.user);
 
   useEffect(() => {
     (async () => {
