@@ -43,6 +43,9 @@
 		"implicit-arrow-linebreak": "off",
 		"object-curly-newline": "off",
 		"import/order": "off",
+		"operator-linebreak": "off",
+		"arrow-body-style": "off",
+		"react/jsx-one-expression-per-line": "off",
 		"react/require-default-props": [
 			"warn",
 			{

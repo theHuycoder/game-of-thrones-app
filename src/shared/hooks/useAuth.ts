@@ -8,6 +8,7 @@ import {
 
 import { AuthClientService } from '@/services';
 import { useAppStore } from '@/shared/store';
+import { useSnackbarStore } from '../store/snackbar.store';
 
 type UseAuthParams = {
   redirectOnSuccessUrl?: string;
@@ -22,12 +23,14 @@ export const useAuth = ({ redirectOnSuccessUrl }: UseAuthParams = {}) => {
       const isTokenValid = await TokenUtils.verifyToken();
       if (!isTokenValid) {
         LocalStorageUtils.removeAuthToken();
+        useSnackbarStore.getState().onSnackbar('Invalid token');
         return redirectTo(APP_URL_MAP.getLoginView());
       }
 
       const resp = await AuthClientService.getUserInfo();
       if (!resp) {
         LocalStorageUtils.removeAuthToken();
+        useSnackbarStore.getState().onSnackbar('Invalid token');
         return redirectTo(APP_URL_MAP.getLoginView());
       }
       const { user: userResp } = resp.data;

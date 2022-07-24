@@ -5,6 +5,7 @@ import { AuthClientService } from '@/services';
 import { LocalStorageUtils } from '@/shared/utils';
 import { redirectTo } from '../../shared/utils/history';
 import { APP_URL_MAP } from '../../shared/utils/map';
+import { useSnackbarStore } from '@/shared/store';
 
 export type LoginFormValues = {
   email: string;
@@ -59,6 +60,9 @@ export const useLoginForm = () => {
           setError('password', {
             message: err.response.data.errorMessage,
           });
+          useSnackbarStore
+            .getState()
+            .onSnackbar('Did you try ? email: test1@abc.com, password: 123456');
         }
       },
     );
@@ -66,7 +70,7 @@ export const useLoginForm = () => {
     if (!resp) return;
     const { authToken, expiresOn } = resp.data;
     LocalStorageUtils.saveAuthToken({ authToken, expiresOn });
-    redirectTo(APP_URL_MAP.getDashboardView());
+    redirectTo(APP_URL_MAP.getCharactersView());
   };
 
   const isError = (inputName: keyof LoginFormValues) => {

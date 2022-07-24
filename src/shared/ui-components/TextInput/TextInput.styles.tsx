@@ -1,3 +1,5 @@
+/* eslint-disable no-shadow */
+// @ts-nocheck
 import TextField from '@material-ui/core/TextField';
 import styled, { css } from 'styled-components';
 import { alpha } from '@material-ui/core/styles';

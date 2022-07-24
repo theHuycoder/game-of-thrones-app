@@ -2,7 +2,7 @@ import dayjs from 'dayjs';
 
 import { Low } from 'lowdb';
 import { nanoid } from 'nanoid';
-import { TokenResponse, IUser, LoginParams } from '../../modals/auth.modals';
+import { IUser, LoginParams } from '../../modals/auth.modals';
 import { IDbModal } from '../db/lowdb';
 
 const TOKEN_SPLIT_WORD = 'USER_ID:';

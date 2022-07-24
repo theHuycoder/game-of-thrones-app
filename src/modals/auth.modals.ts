@@ -13,7 +13,7 @@ export type LoginParams = {
 };
 
 export interface IUser {
-  id: string;
+  id: number;
   email: string;
   password: string;
 }

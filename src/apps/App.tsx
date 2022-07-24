@@ -1,20 +1,26 @@
 import React from 'react';
 import routes from './routes';
+import redirects from './redirects';
 
 import { Switch, Route, Redirect } from 'react-router-dom';
-import { Box } from '@/shared/ui-components';
-import { APP_URL_MAP } from '../shared/utils/map';
+import { Box, Snackbar } from '@/shared/ui-components';
 
 function App() {
   return (
-    <Box>
-      <Switch>
-        {routes.map((route) => (
-          <Route key={route.path} {...route} />
+    <>
+      <Box>
+        <Switch>
+          {routes.map((route) => (
+            <Route key={route.path} {...route} />
+          ))}
+        </Switch>
+        {redirects.map((redirect, index) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <Redirect {...redirect} key={index} />
         ))}
-        <Redirect from="" to={APP_URL_MAP.getLoginView()} />
-      </Switch>
-    </Box>
+      </Box>
+      <Snackbar />
+    </>
   );
 }
 

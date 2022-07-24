@@ -1,6 +1,12 @@
 export const APP_URL_MAP = {
   getLoginView: () => '/auth/login',
   getDashboardView: () => '/dashboard',
+  getCharactersView: () => '/dashboard/characters',
+  getCharacterDetails: () => '/dashboard/characters/:id',
+  getBooks: () => '/dashboard/books',
+  getBookDetails: () => '/dashboard/books/:id',
+  getHouses: () => '/dashboard/houses',
+  getHouseDetails: () => '/dashboard/houses/:id',
 };
 
 export const API_URL_MAP = {

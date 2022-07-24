@@ -2,10 +2,8 @@ import React from 'react';
 import { useAuth } from '@/shared/hooks/useAuth';
 
 // eslint-disable-next-line no-undef
-function WithAuth<P extends JSX.IntrinsicAttributes>(
-  WrappedComponent: React.ComponentType<P>,
-) {
-  const Auth = (props: P) => {
+const WithAuth = (WrappedComponent: any) => {
+  function Auth(props: any) {
     const { user } = useAuth();
 
     if (!user) {
@@ -13,9 +11,9 @@ function WithAuth<P extends JSX.IntrinsicAttributes>(
     }
 
     return <WrappedComponent {...props} />;
-  };
+  }
 
   return Auth;
-}
+};
 
 export default WithAuth;
