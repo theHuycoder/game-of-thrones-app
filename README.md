@@ -2,5 +2,6 @@
 
 To run in local:
 
-install package with yarn install
-run yarn dev
+install package: yarn install.
+
+run: yarn dev
