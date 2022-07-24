@@ -18,6 +18,7 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import { NavLink } from 'react-router-dom';
 import { APP_URL_MAP, LocalStorageUtils, redirectTo } from '@/shared/utils';
 import { useAppStore } from '@/shared/store';
+import { AppStoreState } from '@/shared/store/store';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
