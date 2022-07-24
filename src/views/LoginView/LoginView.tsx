@@ -14,10 +14,14 @@ import {
 import { LogoWrapper } from './LoginView.styles';
 import { CopyConsts } from '@/shared/consts';
 import { useLoginForm } from './useLoginForm';
+import { useAuth } from '@/shared/hooks';
+import { APP_URL_MAP } from '@/shared/utils';
 
 export type LoginViewProps = PropsWithChildren<{}>;
 
 const LoginView: React.FC<LoginViewProps> = () => {
+  useAuth({ redirectOnSuccessUrl: APP_URL_MAP.getDashboardView() });
+
   const { loginView: loginViewConst } = CopyConsts;
 
   const { form, getHelperText, isError, onSubmitSuccess } = useLoginForm();

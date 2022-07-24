@@ -2,6 +2,9 @@ import { useEffect, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { CopyConsts, ValidationConsts } from '@/shared/consts';
 import { AuthClientService } from '@/services';
+import { LocalStorageUtils } from '@/shared/utils';
+import { redirectTo } from '../../shared/utils/history';
+import { APP_URL_MAP } from '../../shared/utils/map';
 
 export type LoginFormValues = {
   email: string;
@@ -61,6 +64,9 @@ export const useLoginForm = () => {
     );
 
     if (!resp) return;
+    const { authToken, expiresOn } = resp.data;
+    LocalStorageUtils.saveAuthToken({ authToken, expiresOn });
+    redirectTo(APP_URL_MAP.getDashboardView());
   };
 
   const isError = (inputName: keyof LoginFormValues) => {

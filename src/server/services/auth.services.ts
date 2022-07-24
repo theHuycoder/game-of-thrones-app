@@ -2,14 +2,12 @@ import dayjs from 'dayjs';
 
 import { Low } from 'lowdb';
 import { nanoid } from 'nanoid';
-import { LoginResponse, IUser, LoginParams } from '../../modals/auth.modals';
+import { TokenResponse, IUser, LoginParams } from '../../modals/auth.modals';
 import { IDbModal } from '../db/lowdb';
 
-interface IAuthService {
-  handleLogin: (params: LoginParams) => Promise<LoginResponse | null>;
-}
+const TOKEN_SPLIT_WORD = 'USER_ID:';
 
-export class AuthService implements IAuthService {
+export class AuthService {
   private db: Low<IDbModal>;
 
   constructor(db: Low<IDbModal>) {
@@ -26,9 +24,23 @@ export class AuthService implements IAuthService {
       return null;
     }
     return {
-      authToken: `${nanoid(10)}USER_ID:${matchedUser.id}`,
+      authToken: `${nanoid(10)}${TOKEN_SPLIT_WORD}${matchedUser.id}`,
       expiresOn: dayjs().add(1, 'hour').unix(),
     };
+  }
+
+  public async isTokenValid(token: string): Promise<boolean> {
+    return !!this.findUserByToken(token);
+  }
+
+  public async findUserByToken(token: string) {
+    const [, userId] = token.split(TOKEN_SPLIT_WORD);
+
+    const matchedUser = await this.findUserById(Number(userId));
+
+    if (!matchedUser) return null;
+
+    return matchedUser;
   }
 
   private async findUserByEmail(email: string): Promise<IUser | null> {
@@ -41,6 +53,22 @@ export class AuthService implements IAuthService {
     }
 
     const matchedUser = data.users.find((user) => user.email === email);
+    if (!matchedUser) {
+      return null;
+    }
+    return matchedUser;
+  }
+
+  public async findUserById(id: number): Promise<IUser | null> {
+    await this.db.read();
+
+    const { data } = this.db;
+
+    if (!data || !data.users) {
+      return null;
+    }
+
+    const matchedUser = data.users.find((user) => user.id === id);
     if (!matchedUser) {
       return null;
     }

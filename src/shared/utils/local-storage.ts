@@ -1,4 +1,4 @@
-import { LoginResponse } from '@/modals/auth.modals';
+import { TokenResponse } from '@/modals/auth.modals';
 
 const AUTH_TOKEN_LOCAL_NAME = 'authToken';
 
@@ -6,7 +6,7 @@ export default (() => {
   const isTokenExist = () =>
     !!window.localStorage.getItem(AUTH_TOKEN_LOCAL_NAME);
 
-  const saveAuthToken = (authInfo: LoginResponse) => {
+  const saveAuthToken = (authInfo: TokenResponse) => {
     window.localStorage.setItem(
       AUTH_TOKEN_LOCAL_NAME,
       JSON.stringify(authInfo),

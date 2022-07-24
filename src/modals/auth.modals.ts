@@ -1,6 +1,10 @@
-export type LoginResponse = {
+export type TokenResponse = {
   authToken: string;
   expiresOn: number;
+};
+
+export type TokenVerifiedResult = {
+  isValid: boolean;
 };
 
 export type LoginParams = {

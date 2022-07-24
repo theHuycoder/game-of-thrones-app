@@ -1,8 +1,9 @@
 import React from 'react';
 import routes from './routes';
 
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { Box } from '@/shared/ui-components';
-import { Switch, Route } from 'react-router-dom';
+import { APP_URL_MAP } from '../shared/utils/map';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         {routes.map((route) => (
           <Route key={route.path} {...route} />
         ))}
+        <Redirect from="" to={APP_URL_MAP.getLoginView()} />
       </Switch>
     </Box>
   );

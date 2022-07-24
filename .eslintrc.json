@@ -42,6 +42,7 @@
 		"default-param-last": "off",
 		"implicit-arrow-linebreak": "off",
 		"object-curly-newline": "off",
+		"import/order": "off",
 		"react/require-default-props": [
 			"warn",
 			{
